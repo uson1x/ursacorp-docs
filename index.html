@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>URSACORP Apps — Documentation</title>
+<meta name="description" content="Documentation for the URSACORP apps for Jira Cloud: Issue Aging Chart, Epic Lens, Sprint Countdown and Worklog Pivot.">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1>URSACORP Apps</h1>
+<p class="lede">Documentation for our four apps for Jira Cloud. Each page covers how the app
+works, what it does, how to set it up, and step-by-step instructions for verifying that it
+works on your own site.</p>
+
+<p>All four are built on <a href="https://developer.atlassian.com/platform/forge/">Atlassian
+Forge</a> and run entirely on Atlassian's infrastructure, inside your own Jira site. They read
+Jira data through Atlassian's APIs using the permissions of the person viewing the page, render
+it in the browser, and discard it. None of them makes a network call to any host outside
+Atlassian, and none of them stores your data anywhere.</p>
+
+<h2>The apps</h2>
+
+<h3><a href="/issue-aging-chart/">Issue Aging Chart</a></h3>
+<p>A dashboard gadget that plots every in-progress issue by how long it has been in progress,
+with guide lines drawn from the cycle times your project actually recorded over the last
+90 days.</p>
+
+<h3><a href="/epic-lens/">Epic Lens</a></h3>
+<p>A project page showing the active sprint as one dense, foldable table grouped by epic, with
+progress on every epic and a keyboard-first interface.</p>
+
+<h3><a href="/sprint-countdown/">Sprint Countdown</a></h3>
+<p>A dashboard gadget showing a large, glanceable countdown to the end of the active sprint on
+a board you choose, or to any date you set yourself.</p>
+
+<h3><a href="/worklog-pivot/">Worklog Pivot</a></h3>
+<p>A project page that turns logged time into a pivot table: authors down the side, epics across
+the top, totals that reconcile, and CSV export.</p>
+
+<h2>Common to all four</h2>
+
+<h3>Installing</h3>
+<p>Install from the Atlassian Marketplace listing, or in Jira go to
+<strong>Apps &rarr; Explore more apps</strong>, search for the app by name, and choose
+<strong>Get app</strong>. Installation needs Jira administrator rights. Nothing else has to be
+configured at the site level.</p>
+
+<h3>Permissions</h3>
+<p>Every app requests read-only permissions and none requests any write permission. Each app
+asks for the smallest set its Jira API calls actually require, and the exact list is on that
+app's page below and on its Marketplace listing. Every request runs as the signed-in viewer, so
+an app can only ever show you what you could already open in Jira yourself.</p>
+
+<h3>Privacy</h3>
+<p>These apps do not collect, store, transmit or sell any of your data. See the
+<a href="https://privacy.ursacorp.org/#atlassian">privacy policy</a>.</p>
+
+<h3>Support</h3>
+<p>Questions, bugs and feature requests:
+<a href="mailto:ursacorp.llc@gmail.com">ursacorp.llc@gmail.com</a>. We answer from the same
+address for security reports.</p>
+
+<footer>URSACORP LLC &middot; Yerevan, Armenia &middot;
+<a href="https://privacy.ursacorp.org/#atlassian">Privacy policy</a></footer>
+</body>
+</html>

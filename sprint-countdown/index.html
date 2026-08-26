@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sprint Countdown — Documentation</title>
+<meta name="description" content="How Sprint Countdown works, how to add it to a Jira dashboard, its custom date mode, and how to verify it.">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<p class="crumb"><a href="/">URSACORP Apps</a> / Sprint Countdown</p>
+<h1>Sprint Countdown</h1>
+<p class="lede">A Jira dashboard gadget showing a large, glanceable countdown to the end of the
+active sprint on a board you choose, or to any date you set yourself.</p>
+
+<h2>How it works</h2>
+<p>Add the gadget to any dashboard and point it at a Scrum board. It shows the sprint name, a
+large days / hours / minutes countdown, an elapsed-time bar, and a done-versus-total issue
+count.</p>
+<p>The important detail is what it stores. It stores <strong>a board, not a sprint id</strong>,
+and resolves the active sprint fresh on every refresh, so nobody has to re-point it every two
+weeks. If a board is running parallel sprints, it counts down the one ending soonest.</p>
+<p>The clock ticks every second in your browser, while Jira itself is re-read every 15 minutes.
+A wall of dashboards therefore costs almost nothing in API traffic.</p>
+<p>Past the target the gadget flips to an overdue state, in red, with a flag. It never freezes
+at zero and it never shows a negative number.</p>
+
+<h3>Custom date mode</h3>
+<p>Instead of a board you can set your own target date and time, to count down to a release, a
+cutover, an audit or any deadline. An optional start date gives the elapsed bar something to
+measure from.</p>
+
+<h2>Key features</h2>
+<ul>
+  <li>Large days / hours / minutes countdown, readable across a room.</li>
+  <li>Follows whichever sprint is currently active on the chosen board, with no re-configuration
+      between sprints.</li>
+  <li>Picks the soonest-ending sprint when a board runs parallel sprints.</li>
+  <li>Elapsed-time progress bar and a done-versus-total issue count for the sprint.</li>
+  <li>Custom date mode with an optional start date.</li>
+  <li>Explicit overdue state rather than a frozen or negative clock.</li>
+  <li>Ticks locally every second, re-reads Jira every 15 minutes.</li>
+  <li>Read-only, runs as the viewer, makes no external network calls.</li>
+</ul>
+
+<h2>Setup</h2>
+<ol>
+  <li>Install the app from the Marketplace. This needs Jira administrator rights.</li>
+  <li>In Jira go to <strong>Dashboards</strong> and open or create a dashboard.</li>
+  <li>Choose <strong>Edit</strong>, then <strong>Add gadget</strong>.</li>
+  <li>Find <strong>Sprint Countdown</strong> in the gadget list and choose <strong>Add
+      gadget</strong>.</li>
+  <li>In the gadget configuration, type part of a board name into the search box, pick the Scrum
+      board from the results, and choose <strong>Save</strong>.</li>
+</ol>
+<p>To use custom date mode instead, switch the mode in the same configuration view, set the
+target date and time, optionally set a start date, give it a name, and save.</p>
+
+<h2>Verifying that it works</h2>
+
+<h3>What you need on the site first</h3>
+<ul>
+  <li>A project with a <strong>Scrum board</strong>.</li>
+  <li>An <strong>active sprint</strong> on that board, with an end date set.</li>
+  <li>A few issues in the sprint, at least one of them in a Done status, so the done-versus-total
+      count is not zero.</li>
+</ul>
+
+<h3>Steps</h3>
+<ol>
+  <li>Add the gadget to a dashboard and point it at that board, as described under Setup.</li>
+  <li><strong>Check the sprint.</strong> The name shown should be the active sprint on that
+      board.</li>
+  <li><strong>Check the countdown.</strong> Open the sprint on the board and note its end date.
+      The days, hours and minutes shown should match the time remaining until that moment. Watch
+      for a few seconds and confirm the clock is ticking.</li>
+  <li><strong>Check the issue count.</strong> The done-versus-total figure should match the sprint
+      contents. Verify by counting on the board.</li>
+  <li><strong>Check that it follows the sprint.</strong> Complete the sprint and start a new one
+      on the same board, then refresh the gadget. It should pick up the new sprint on its own,
+      with no reconfiguration.</li>
+  <li><strong>Check the overdue state.</strong> Switch the gadget to custom date mode and set a
+      target in the past. It should show an overdue state in red with a flag, and must not show a
+      negative number or freeze at zero.</li>
+  <li><strong>Check custom date mode.</strong> Set a target a few days in the future with a start
+      date in the past. The countdown should match the target and the elapsed bar should be
+      partly filled.</li>
+  <li><strong>Check the empty case.</strong> Point the gadget at a board that has no active
+      sprint. It should say so plainly rather than showing a broken or blank widget.</li>
+</ol>
+
+<h2>Permissions</h2>
+<p>Five permissions, all read-only. The app requests no write permission. Every call runs as the
+signed-in viewer, so nobody sees a board or issue they could not already open in Jira.</p>
+<div class="wrap">
+<table>
+  <tr><th>Permission</th><th>Why it is needed</th></tr>
+  <tr><td><code>read:board-scope:jira-software</code><br><code>read:project:jira</code></td>
+      <td>List the Scrum boards you can choose from when configuring the gadget.</td></tr>
+  <tr><td><code>read:sprint:jira-software</code></td>
+      <td>Find the active sprint on that board and read its end date.</td></tr>
+  <tr><td><code>read:issue-details:jira</code><br><code>read:jql:jira</code></td>
+      <td>Count how many issues in the sprint are done versus the total, for the progress
+          figure.</td></tr>
+</table>
+</div>
+<p class="note">Granular permissions are used rather than the older <code>read:jira-work</code>
+because the Jira Software agile endpoints reject <code>read:jira-work</code>, and Forge does not
+permit mixing classic and granular permissions in one app.</p>
+
+<h2>Data handling</h2>
+<p>No data leaves your Atlassian site. The manifest declares no external permissions and the
+source contains no outbound network call, so the app is eligible for Atlassian's
+<a href="https://go.atlassian.com/runs-on-atlassian">Runs on Atlassian</a> programme. The app
+stores nothing beyond the gadget's own configuration, which is the board or the custom date you
+chose. Full detail is in the <a href="https://privacy.ursacorp.org/#atlassian">privacy
+policy</a>.</p>
+
+<h2>Support</h2>
+<p><a href="mailto:ursacorp.llc@gmail.com">ursacorp.llc@gmail.com</a></p>
+
+<footer>URSACORP LLC &middot; Yerevan, Armenia &middot;
+<a href="https://privacy.ursacorp.org/#atlassian">Privacy policy</a></footer>
+</body>
+</html>

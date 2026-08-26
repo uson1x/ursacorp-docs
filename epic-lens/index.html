@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Epic Lens — Documentation</title>
+<meta name="description" content="How Epic Lens works, how to open it in a Jira project, its keyboard shortcuts, and how to verify it.">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<p class="crumb"><a href="/">URSACORP Apps</a> / Epic Lens</p>
+<h1>Epic Lens</h1>
+<p class="lede">A Jira project page that shows the active sprint as one dense, foldable table
+grouped by epic, with progress on every epic and a keyboard-first interface.</p>
+
+<h2>How it works</h2>
+<p>Jira's board is a planning surface. Most of the time you do not want to plan, you want to
+answer one question: what is in this sprint, which epic does it belong to, and how far along is
+that epic?</p>
+<p>Epic Lens answers that as a single table. When you open the page it finds the Scrum boards
+belonging to the project, takes the active sprint, loads its issues, groups them by parent epic,
+and renders one row per issue. Each group header carries a done-versus-total count and a
+progress bar. Issues with no parent collect under <strong>No epic</strong> at the bottom.</p>
+<p>If the project has no Scrum board, or the board has no active sprint, the page does not show
+an empty panel. It falls back to all open work in the project and tells you why it did.</p>
+<p>Everything is computed in your browser from data Jira returns for the signed-in user. The app
+stores nothing except which groups you folded, which stays in your own browser.</p>
+
+<h2>Key features</h2>
+<ul>
+  <li>The active sprint as one dense table, grouped by epic, with a done/total count and a
+      progress bar on each group header.</li>
+  <li>Collapsible groups, with the fold state remembered between visits.</li>
+  <li>Regroup by <strong>epic</strong>, <strong>assignee</strong> or <strong>status</strong> in
+      one click. Grouping by status orders the groups by workflow position rather than
+      alphabetically.</li>
+  <li>Filter as you type across issue keys, summaries and assignee names. Multiple words are
+      combined, groups reflow to whatever matched, and each epic's progress recounts against the
+      filtered set.</li>
+  <li>Keyboard-first navigation.</li>
+  <li>A stated fallback when there is no sprint, rather than a blank screen.</li>
+  <li>Read-only. No configuration, nothing to break.</li>
+</ul>
+
+<h2>Keyboard shortcuts</h2>
+<div class="wrap">
+<table>
+  <tr><th>Key</th><th>Action</th></tr>
+  <tr><td><code>j</code></td><td>Move focus down one row</td></tr>
+  <tr><td><code>k</code></td><td>Move focus up one row</td></tr>
+  <tr><td><code>e</code></td><td>Fold or unfold the focused group</td></tr>
+  <tr><td><code>/</code></td><td>Jump to the filter box</td></tr>
+  <tr><td><code>Enter</code></td><td>Open the focused issue in Jira</td></tr>
+</table>
+</div>
+
+<h2>Setup</h2>
+<ol>
+  <li>Install the app from the Marketplace. This needs Jira administrator rights.</li>
+  <li>Open any Jira project.</li>
+  <li>In the project sidebar, choose <strong>Epic Lens</strong>.</li>
+</ol>
+<p>There is nothing to configure. The page reads the project you are in from the Jira page
+context.</p>
+
+<h2>Verifying that it works</h2>
+
+<h3>What you need on the site first</h3>
+<ul>
+  <li>A project with a <strong>Scrum board</strong> that has an <strong>active sprint</strong>.</li>
+  <li>Several issues in that sprint, with at least two of them children of different epics, and
+      at least one with no parent, so the grouping and the <strong>No epic</strong> group can both
+      be seen.</li>
+  <li>At least one issue in the sprint already in a Done status, so the progress bars are not all
+      at zero.</li>
+  <li>Assignees on some issues, so the assignee grouping and the filter can be exercised.</li>
+</ul>
+
+<h3>Steps</h3>
+<ol>
+  <li>Open the project and choose <strong>Epic Lens</strong> in the sidebar.</li>
+  <li><strong>Check the contents.</strong> The rows should be exactly the issues in the active
+      sprint. Compare against the board's sprint.</li>
+  <li><strong>Check the grouping.</strong> Each issue should sit under its parent epic. Issues
+      with no parent should sit under <strong>No epic</strong> at the bottom.</li>
+  <li><strong>Check the progress.</strong> A group header showing 2/5 should mean two of that
+      epic's five issues in this sprint are in a Done status. Verify one group by hand.</li>
+  <li><strong>Check folding.</strong> Click a group header to fold it, reload the page, and
+      confirm it is still folded.</li>
+  <li><strong>Check the keyboard.</strong> Press <code>j</code> and <code>k</code> to move
+      between rows, <code>e</code> to fold the focused group, <code>/</code> to jump to the
+      filter, and <code>Enter</code> to open the focused issue.</li>
+  <li><strong>Check the filter.</strong> Type part of an issue summary or an assignee name. Only
+      matching rows should remain, empty groups should disappear, and the done/total counts
+      should recount against what is left.</li>
+  <li><strong>Check regrouping.</strong> Switch the grouping to assignee and then to status. The
+      same rows should regroup. Under status grouping, the groups should be ordered by workflow
+      position, not alphabetically.</li>
+  <li><strong>Check the fallback.</strong> Open Epic Lens on a project that has no Scrum board or
+      no active sprint. The page should show all open work in that project and state why it fell
+      back. This is the intended behaviour, not an error.</li>
+  <li><strong>Check the permission boundary.</strong> Open the page as a user who cannot see some
+      of the project's issues. Only the issues that user can already open in Jira should
+      appear.</li>
+</ol>
+
+<h2>Permissions</h2>
+<p>Nine permissions, all read-only. The app requests no write permission. Every request is made
+with <code>asUser()</code>, so a viewer only ever sees issues they could already open in Jira.</p>
+<div class="wrap">
+<table>
+  <tr><th>Permission</th><th>Why it is needed</th></tr>
+  <tr><td><code>read:board-scope:jira-software</code><br><code>read:project:jira</code></td>
+      <td>List the Scrum boards belonging to the project being viewed.</td></tr>
+  <tr><td><code>read:sprint:jira-software</code></td>
+      <td>Find the active sprint on those boards and load its issues.</td></tr>
+  <tr><td><code>read:issue-details:jira</code></td>
+      <td>The six fields the table renders: key, summary, status, assignee, issue type and
+          priority.</td></tr>
+  <tr><td><code>read:jql:jira</code></td>
+      <td>The enhanced search endpoint, used for the all-open-work fallback view.</td></tr>
+  <tr><td><code>read:audit-log:jira</code><br><code>read:avatar:jira</code><br><code>read:field-configuration:jira</code><br><code>read:issue-meta:jira</code></td>
+      <td>The set Atlassian's documentation lists as required for that same search endpoint. The
+          app does not read your audit log, field configurations or issue metadata for any other
+          purpose; the endpoint will not authorize without them.</td></tr>
+</table>
+</div>
+<p class="note">Granular permissions are used rather than the older <code>read:jira-work</code>
+because the Jira Software agile endpoints reject <code>read:jira-work</code>, and Forge does not
+permit mixing classic and granular permissions in one app.</p>
+
+<h2>Data handling</h2>
+<p>No data leaves your Atlassian site. The manifest declares no external permissions and the
+source contains no outbound network call, so the app is eligible for Atlassian's
+<a href="https://go.atlassian.com/runs-on-atlassian">Runs on Atlassian</a> programme. The only
+thing kept is which groups you folded, stored in your own browser. Full detail is in the
+<a href="https://privacy.ursacorp.org/#atlassian">privacy policy</a>.</p>
+
+<h2>Support</h2>
+<p><a href="mailto:ursacorp.llc@gmail.com">ursacorp.llc@gmail.com</a></p>
+
+<footer>URSACORP LLC &middot; Yerevan, Armenia &middot;
+<a href="https://privacy.ursacorp.org/#atlassian">Privacy policy</a></footer>
+</body>
+</html>

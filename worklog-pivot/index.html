@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Worklog Pivot — Documentation</title>
+<meta name="description" content="How Worklog Pivot works, how to open it in a Jira project, CSV export, and how to verify it.">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<p class="crumb"><a href="/">URSACORP Apps</a> / Worklog Pivot</p>
+<h1>Worklog Pivot</h1>
+<p class="lede">A Jira project page that turns logged time into a pivot table: authors down the
+side, epics across the top, totals that reconcile, and CSV export.</p>
+
+<h2>How it works</h2>
+<p>Answer "who logged how much time on what" without buying a timesheet suite.</p>
+<p>Worklog Pivot adds one page to a Jira project. You pick a date range and it builds a pivot of
+logged hours: worklog authors down the side, epics across the top, and totals along both edges.
+One toggle splits each author into ISO weeks. Sub-tasks group under their story's epic, and
+issues with no epic collapse into a single <strong>No epic</strong> column.</p>
+
+<h3>Why it is correct where simpler tools are not</h3>
+<ul>
+  <li><strong>All worklogs, not the first twenty.</strong> Jira's issue search returns only an
+      issue's first 20 worklog entries. The app fetches each issue's full worklog list instead,
+      so heavily-logged issues are not silently truncated.</li>
+  <li><strong>Entries are filtered, not issues.</strong> A Jira date filter matches issues, not
+      worklog entries, so an issue touched inside your range drags in entries from outside it.
+      Every entry is re-filtered against the range in your chosen timezone before it counts.</li>
+  <li><strong>The count is shown.</strong> The footer reports how many issues were read, how many
+      entries were counted, and how many were excluded, so you can watch the filtering
+      happen.</li>
+  <li><strong>Totals reconcile.</strong> Row totals, column totals and the grand total are summed
+      from exact seconds rather than from the rounded hours on screen.</li>
+</ul>
+<p class="note">Reports covering more than 2,000 issues are truncated, with a visible warning
+rather than a silently short answer.</p>
+
+<h2>Key features</h2>
+<ul>
+  <li>Pivot of logged hours by author and epic, for any date range.</li>
+  <li>Weekly toggle that splits each author into ISO weeks.</li>
+  <li>Row, column and grand totals summed from exact seconds.</li>
+  <li>Explicit timezone handling, shown in the footer and stamped into every export.</li>
+  <li>CSV export of either the pivot as displayed or the raw worklog rows, generated in your
+      browser and saved to your own device.</li>
+  <li>A footer that reports issues read, entries counted and entries excluded.</li>
+  <li>Read-only. Nothing is written back to Jira.</li>
+</ul>
+
+<h2>Setup</h2>
+<ol>
+  <li>Install the app from the Marketplace. This needs Jira administrator rights.</li>
+  <li>Open any Jira project.</li>
+  <li>In the project sidebar, choose <strong>Worklog Pivot</strong>.</li>
+  <li>Pick a start and end date, and choose the timezone if the default is not the one you
+      want.</li>
+</ol>
+
+<h2>Verifying that it works</h2>
+
+<h3>What you need on the site first</h3>
+<ul>
+  <li>A project with <strong>worklogs</strong> logged against several issues.</li>
+  <li>Entries from <strong>at least two different people</strong>, so there is more than one
+      row.</li>
+  <li>Issues belonging to <strong>at least two different epics</strong>, plus at least one issue
+      with no epic, so the <strong>No epic</strong> column appears.</li>
+  <li>At least one worklog entry <strong>outside</strong> the range you will select, on an issue
+      that also has entries inside it. This is what proves the entry-level filtering.</li>
+</ul>
+
+<h3>Steps</h3>
+<ol>
+  <li>Open the project and choose <strong>Worklog Pivot</strong> in the sidebar.</li>
+  <li>Set a date range that covers most, but not all, of the worklog entries you created.</li>
+  <li><strong>Check the shape.</strong> Rows should be worklog authors, columns should be epics,
+      and there should be a <strong>No epic</strong> column for issues with no parent epic.</li>
+  <li><strong>Check a cell.</strong> Pick one author and one epic. Add up the hours that person
+      logged inside the range on issues under that epic, using the issues' own Work log tabs. The
+      cell should match.</li>
+  <li><strong>Check the totals.</strong> Confirm each row total is the sum of its cells, each
+      column total the sum of its column, and the grand total the sum of both.</li>
+  <li><strong>Check the entry-level filtering.</strong> The footer should report a non-zero number
+      of excluded entries, matching the entries you deliberately placed outside the range. This
+      is the behaviour that distinguishes it from an issue-level date filter.</li>
+  <li><strong>Check the weekly split.</strong> Turn on the weekly toggle. Each author should split
+      into ISO weeks, and the totals should still reconcile to the same grand total.</li>
+  <li><strong>Check the exports.</strong> Export the pivot as CSV and open it. It should match
+      what is on screen. Then export the raw worklog rows and confirm they are the individual
+      entries behind the pivot. The filename carries the project, the range and the
+      timezone.</li>
+  <li><strong>Check the timezone.</strong> Change the timezone and confirm that entries logged
+      near midnight move between days as expected.</li>
+  <li><strong>Check the permission boundary.</strong> Open the page as a user who cannot see some
+      of the project's issues. Only worklogs on issues that user can already open in Jira should
+      be counted.</li>
+</ol>
+
+<h2>Permissions</h2>
+<p>The app requests a single read-only permission, <code>read:jira-work</code>, and no write
+permission of any kind.</p>
+<p>It is used to read worklog entries together with the issues and projects those worklogs belong
+to, so time can be grouped by author, by issue and by project. Reading issues and projects is
+required because a worklog entry on its own carries no issue summary or project name to group
+by.</p>
+<p>Every request is made with <code>asUser()</code>, so a viewer only ever sees worklogs on
+issues they could already open in Jira themselves.</p>
+
+<h2>Data handling</h2>
+<p>No data leaves your Atlassian site. The manifest declares no external permissions and the
+source contains no outbound network call, so the app is eligible for Atlassian's
+<a href="https://go.atlassian.com/runs-on-atlassian">Runs on Atlassian</a> programme. The app
+stores nothing. CSV exports are generated in your browser from the data already on screen and
+saved only to your own device. Full detail is in the
+<a href="https://privacy.ursacorp.org/#atlassian">privacy policy</a>.</p>
+
+<h2>Support</h2>
+<p><a href="mailto:ursacorp.llc@gmail.com">ursacorp.llc@gmail.com</a></p>
+
+<footer>URSACORP LLC &middot; Yerevan, Armenia &middot;
+<a href="https://privacy.ursacorp.org/#atlassian">Privacy policy</a></footer>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Issue Aging Chart — Documentation</title>
+<meta name="description" content="How Issue Aging Chart works, how to set it up on a Jira dashboard, and how to verify it.">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<p class="crumb"><a href="/">URSACORP Apps</a> / Issue Aging Chart</p>
+<h1>Issue Aging Chart</h1>
+<p class="lede">A Jira dashboard gadget that plots every in-progress issue by how long it has
+been in progress, against the cycle times your own project recorded over the last 90 days.</p>
+
+<h2>How it works</h2>
+<p>Work in progress rarely announces that it is stuck. It just sits there while the board looks
+busy. This gadget puts every open in-progress issue on one plot.</p>
+<ul>
+  <li><strong>Horizontal position</strong> is the status the issue is currently sitting in.</li>
+  <li><strong>Vertical position</strong> is how many days it has been in progress, computed from
+      the issue's own changelog rather than from its creation date.</li>
+  <li><strong>Four dashed guide lines</strong> cross the chart at the 50th, 70th, 85th and 95th
+      percentiles of the cycle times your project actually recorded over the last 90 days.</li>
+</ul>
+<p>That last part is what makes the chart worth reading. A dot above the 85th percentile line is
+not "old" by some vendor's definition. It is older than 85% of the work this team has actually
+finished recently.</p>
+<p>When the gadget loads it asks Jira for the in-progress issues in the chosen project, for the
+issues that project completed in the last 90 days, and for the status changelogs of both sets.
+It computes the percentiles in your browser. Nothing is stored and nothing is sent anywhere.</p>
+
+<h3>An honest limit</h3>
+<p class="note">A project that has not finished at least five issues in the last 90 days has no
+baseline worth ranking against. In that case the gadget says so plainly and leaves every dot
+neutral, rather than colouring ordinary work red. If you see that message, it is working
+correctly.</p>
+
+<h2>Key features</h2>
+<ul>
+  <li>One dot per in-progress issue, positioned by status and by days in progress.</li>
+  <li>Percentile guide lines computed from your project's own recent cycle times, not from a
+      fixed threshold.</li>
+  <li>Click any dot to open that issue in Jira.</li>
+  <li>Refreshes on the dashboard's own refresh control.</li>
+  <li>States the absence of a baseline instead of inventing one.</li>
+  <li>Reads your data and stores nothing. No external services, no analytics.</li>
+</ul>
+
+<h2>Setup</h2>
+<ol>
+  <li>Install the app from the Marketplace. This needs Jira administrator rights.</li>
+  <li>In Jira go to <strong>Dashboards</strong> and open the dashboard you want, or create a new
+      one.</li>
+  <li>Choose <strong>Edit</strong>, then <strong>Add gadget</strong>.</li>
+  <li>Find <strong>Issue Aging Chart</strong> in the gadget list and choose <strong>Add
+      gadget</strong>.</li>
+  <li>The gadget opens in its configuration view. Type part of a project name or key into the
+      search box, pick the project from the results, and choose <strong>Save</strong>.</li>
+</ol>
+<p>There is nothing else to configure. The gadget stores the project you picked and reads
+everything else from Jira each time it loads.</p>
+
+<h2>Verifying that it works</h2>
+
+<h3>What you need on the site first</h3>
+<p>The chart needs real data to show anything meaningful. On a fresh site, prepare one project
+with:</p>
+<ul>
+  <li>At least a few issues currently in a status whose category is <strong>In Progress</strong>,
+      moved there at different times so they differ in age.</li>
+  <li>At least five issues moved to a <strong>Done</strong> status within the last 90 days. This
+      is what the percentile lines are computed from. With fewer than five, the gadget will
+      correctly report that there is no baseline.</li>
+</ul>
+
+<h3>Steps</h3>
+<ol>
+  <li>Add the gadget to a dashboard and point it at that project, as described under Setup.</li>
+  <li><strong>Check the dots.</strong> Count the dots on the chart. There should be exactly one
+      per in-progress issue in the project. Compare against an issue search using
+      <code>project = YOURKEY AND statusCategory = "In Progress"</code>.</li>
+  <li><strong>Check a position.</strong> Pick one dot and note the number of days it shows. Open
+      that issue's History tab and confirm the date it first entered an in-progress status. The
+      days on the chart should match the elapsed time since then.</li>
+  <li><strong>Check the guide lines.</strong> Four dashed lines should be drawn across the chart,
+      labelled with the 50th, 70th, 85th and 95th percentiles.</li>
+  <li><strong>Check the click-through.</strong> Click any dot. Jira should navigate to that
+      issue.</li>
+  <li><strong>Check the no-baseline path.</strong> Point the gadget at a project with fewer than
+      five issues completed in the last 90 days, for example a brand new project. The gadget
+      should state that there is not enough completed work to rank against, draw no guide lines,
+      and leave the dots neutral. This is the intended behaviour.</li>
+  <li><strong>Check the refresh.</strong> Move an issue into or out of an in-progress status, then
+      refresh the gadget. The chart should follow.</li>
+</ol>
+
+<h2>Permissions</h2>
+<p>The app requests a single read-only permission, <code>read:jira-work</code>, and no write
+permission of any kind. It is used to read the issues that are currently in progress, their
+changelogs, the project the gadget is pointed at, and status metadata so that statuses can be
+mapped to their categories.</p>
+<p>Every request goes through the Forge bridge as the signed-in viewer, so a user only ever sees
+issues they could already open in Jira themselves. The gadget writes nothing back to Jira.</p>
+
+<h2>Data handling</h2>
+<p>No data leaves your Atlassian site. The manifest declares no external permissions, and the
+source contains no outbound network call, so the app is eligible for Atlassian's
+<a href="https://go.atlassian.com/runs-on-atlassian">Runs on Atlassian</a> programme. The app
+stores nothing beyond the gadget's own configuration, which is the project you selected. Full
+detail is in the <a href="https://privacy.ursacorp.org/#atlassian">privacy policy</a>.</p>
+
+<h2>Support</h2>
+<p><a href="mailto:ursacorp.llc@gmail.com">ursacorp.llc@gmail.com</a></p>
+
+<footer>URSACORP LLC &middot; Yerevan, Armenia &middot;
+<a href="https://privacy.ursacorp.org/#atlassian">Privacy policy</a></footer>
+</body>
+</html>
