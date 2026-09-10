@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security Policy — URSACORP LLC</title>
+<meta name="description" content="Partner Security Policy for URSACORP LLC: how we handle security issues and incidents, how we manage vulnerabilities, and the security controls behind our Atlassian Marketplace apps.">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<p class="crumb"><a href="/">URSACORP Apps</a> &rsaquo; Security Policy</p>
+
+<h1>Security Policy</h1>
+<p class="lede">How URSACORP LLC handles security issues and incidents, manages vulnerabilities,
+and secures the apps it publishes on the Atlassian Marketplace.</p>
+
+<p>This is the Partner Security Policy for <strong>URSACORP LLC</strong>, covering the four
+apps we publish for Jira Cloud: <a href="/issue-aging-chart/">Issue Aging Chart</a>,
+<a href="/epic-lens/">Epic Lens</a>, <a href="/sprint-countdown/">Sprint Countdown</a> and
+<a href="/worklog-pivot/">Worklog Pivot</a>. Data-collection practices are covered separately
+in our <a href="https://privacy.ursacorp.org/#atlassian">privacy policy</a>.</p>
+
+<p class="note">URSACORP is a small company and this policy describes what actually happens,
+not an aspirational programme. Where we do not hold a certification or run a control, we say so
+rather than leaving it vague.</p>
+
+<h2>Reporting a vulnerability</h2>
+
+<p>Email <a href="mailto:security@ursacorp.org">security@ursacorp.org</a>. This address is
+monitored and security reports are prioritised over all other correspondence.</p>
+
+<p>Please include the app and version, what you did, what happened, and what you expected.
+A proof of concept, a screenshot or a short screen recording helps a great deal. If a report
+needs to be encrypted, say so in a first message and we will arrange a channel.</p>
+
+<p>What to expect from us:</p>
+<ul>
+<li>An acknowledgement within the timeframe in the table below, from a person, not an autoresponder.</li>
+<li>An assessment of severity and impact, and our reasoning, so you can disagree with it.</li>
+<li>Progress updates until the issue is closed.</li>
+<li>Credit in the release notes if you want it, and none if you do not.</li>
+</ul>
+
+<p>We do not run a paid bug bounty. We will not pursue legal action against anyone who reports
+a vulnerability to us in good faith, who stays within their own Jira site or a test site they
+control, who does not access, modify or destroy other people's data, and who gives us a
+reasonable chance to fix the issue before disclosing it publicly.</p>
+
+<h2>Handling security issues and incidents</h2>
+
+<p>We treat all of the following as security incidents, whether we find them ourselves or they
+are reported by a customer, a researcher or Atlassian:</p>
+<ul>
+<li>A flaw that lets a user see Jira data they have no permission to see, or that lets
+untrusted content execute in another user's browser.</li>
+<li>A high or critical severity vulnerability in a dependency the app actually reaches at runtime.</li>
+<li>Compromise of a credential that can publish or modify an app: the Atlassian account,
+the Forge CLI token, or the GitHub account holding the source.</li>
+<li>Any suspected unauthorised change to a published version of an app.</li>
+</ul>
+
+<h3>Response targets</h3>
+<div class="wrap">
+<table>
+<thead><tr><th>Severity</th><th>Meaning</th><th>Acknowledge</th><th>Fix or mitigate</th></tr></thead>
+<tbody>
+<tr><td>Critical</td><td>Cross-tenant data exposure, or a compromised publishing credential</td><td>Same day</td><td>3 calendar days</td></tr>
+<tr><td>High</td><td>Data visible beyond the viewer's own Jira permissions, or stored XSS</td><td>2 business days</td><td>14 calendar days</td></tr>
+<tr><td>Medium</td><td>Requires unusual preconditions, limited impact</td><td>5 business days</td><td>30 calendar days</td></tr>
+<tr><td>Low</td><td>Hardening and defence in depth</td><td>5 business days</td><td>Next release</td></tr>
+</tbody>
+</table>
+</div>
+<p>These match Atlassian's Marketplace security bug fix policy. Where the two ever diverge,
+Atlassian's policy governs.</p>
+
+<h3>What we do</h3>
+<ol>
+<li><strong>Record.</strong> The report is logged with the app, version, reporter, and known impact.</li>
+<li><strong>Assess.</strong> We reproduce the issue on a test Jira site, assign a severity from
+the table above, and establish which published versions are affected.</li>
+<li><strong>Contain.</strong> A compromised publishing credential is rotated first: Atlassian
+account password and MFA, Forge CLI token, GitHub token. If a published version is actively
+harmful we ask Atlassian to unlist it rather than leave it installable while a fix is built.</li>
+<li><strong>Fix.</strong> We patch, deploy to a test site, verify the specific failure is gone,
+then release a new version through the Marketplace.</li>
+<li><strong>Notify.</strong> For any incident of high severity or above we notify Atlassian and
+affected customers within the timelines in Atlassian's incident and vulnerability notification
+guidance. Notification is not held back waiting for a fix: a report of what is known and what
+is being done comes first.</li>
+<li><strong>Close.</strong> We write down the cause and what changed, so the same failure
+cannot recur silently.</li>
+</ol>
+
+<h2>Vulnerability management</h2>
+
+<p>Our attack surface is deliberately small: the apps run on Atlassian Forge, hold no
+credentials, store nothing, and call no host outside Atlassian. Most of the residual risk is in
+third-party code, so that is where the effort goes.</p>
+
+<ul>
+<li><strong>Dependency scanning (SCA).</strong> We run <code>npm audit</code> against the full
+dependency tree of every app before each release. GitHub security advisories are enabled on the
+source repositories, so new advisories against already-released dependencies reach us without
+us having to look.</li>
+<li><strong>Triage.</strong> Each finding is assessed for whether the app actually reaches the
+vulnerable code path at runtime, not just whether the package appears in the tree. Reachable
+high and critical findings are fixed on the timelines above. Findings we judge unreachable are
+recorded with the reasoning and revisited at the next release rather than dismissed.</li>
+<li><strong>Disclosure.</strong> Known unresolved findings are disclosed in our Atlassian
+Marketplace security questionnaire responses rather than left unmentioned.</li>
+<li><strong>Patching.</strong> Dependency updates ship as part of ordinary releases. A fix for
+a reachable high or critical finding is released on its own if it would otherwise wait.</li>
+<li><strong>Code review.</strong> Changes are reviewed before release, with attention to the
+places where Jira data crosses into the page: output escaping, query construction, and CSV export.</li>
+</ul>
+
+<p>We do not currently run automated SAST or DAST tooling, and we do not employ external
+penetration testers. We would rather state that plainly than imply coverage we do not have.</p>
+
+<h2>Security controls</h2>
+
+<h3>Architecture</h3>
+<ul>
+<li>All four apps are built on <a href="https://developer.atlassian.com/platform/forge/">Atlassian
+Forge</a> and run entirely on Atlassian's infrastructure, inside the customer's own Jira site.</li>
+<li>The apps declare no <code>external</code> egress permissions. They cannot call any host
+outside Atlassian, and this is enforced by the Forge platform rather than by our own discipline.</li>
+<li>The apps use no Forge Storage and no database. Jira data is read, rendered in the browser,
+and discarded when the page closes. Nothing is retained after the request.</li>
+<li>No end-user data is logged. No analytics, telemetry or third-party scripts are loaded.</li>
+<li>There are no sub-processors, because no data ever leaves Atlassian's platform.</li>
+</ul>
+
+<h3>Least privilege</h3>
+<ul>
+<li>Every app requests read-only Jira scopes. None requests any write scope.</li>
+<li>Each app requests the smallest set its API calls actually require. The exact scopes, with a
+justification for each one, are listed on each app's documentation page.</li>
+<li>Every Jira request runs as the signed-in viewer, not as the app. An app can therefore only
+ever show a person what they could already open in Jira themselves, and a bug in our code
+cannot widen anyone's Jira permissions.</li>
+<li>The apps never ask users for Atlassian API tokens, personal access tokens or passwords,
+and hold no customer credentials of any kind.</li>
+</ul>
+
+<h3>Handling untrusted input</h3>
+<p>Jira content is untrusted input: issue summaries, user names and field values can contain
+anything a user typed. Our controls at that boundary:</p>
+<ul>
+<li>Values from Jira are HTML-escaped before being written to the page, and text nodes are used
+in preference to markup wherever a value does not need formatting.</li>
+<li>JQL is built from validated components. Identifiers are matched against strict allowlist
+patterns and rejected if they do not match; free-text values are quoted and escaped rather than
+interpolated raw.</li>
+<li>Values interpolated into API paths and query strings are URL-encoded, and query lengths are
+bounded.</li>
+<li>CSV export follows RFC 4180 quoting and additionally defends against spreadsheet formula
+injection by prefixing values that begin with a formula lead character.</li>
+</ul>
+
+<h3>Access and operations</h3>
+<ul>
+<li>Publishing access to the Marketplace listings and the Forge apps is held by one named
+person, the company's owner. There are no shared accounts.</li>
+<li>Multi-factor authentication is enabled on the Atlassian and GitHub accounts that can
+publish or modify an app.</li>
+<li>Source code is held in private repositories. Released versions are built from committed
+source.</li>
+<li>The development workstation runs with full disk encryption, automatic operating system
+updates, and Gatekeeper, XProtect and System Integrity Protection enabled.</li>
+<li>Credentials capable of publishing are rotated immediately on any suspicion of compromise.</li>
+</ul>
+
+<h2>Compliance posture</h2>
+<p>We hold no SOC 2, ISO 27001 or comparable certification, and we have not completed a CAIQ.
+For a company of this size those would be documents rather than assurance, and we would rather
+be accurate about that. What does apply:</p>
+<ul>
+<li>The apps run on Atlassian infrastructure, so Atlassian's own platform controls,
+certifications and data-residency handling apply to the environment they execute in.</li>
+<li>We process no personal data of our own: we are neither a data controller nor a data
+processor for the Jira data these apps display, because none of it is transmitted to us or
+stored by us.</li>
+</ul>
+
+<h2>Contact and review</h2>
+<ul>
+<li>Security reports and questions: <a href="mailto:security@ursacorp.org">security@ursacorp.org</a></li>
+<li>General support: <a href="mailto:support@ursacorp.org">support@ursacorp.org</a></li>
+<li>Atlassian: through the Marketplace partner service desk at
+<a href="https://ecosystem.atlassian.net/">ecosystem.atlassian.net</a>.</li>
+</ul>
+<p>This policy is reviewed at least annually, and after any incident of high severity or above.</p>
+
+<footer>URSACORP LLC &middot; Yerevan, Armenia &middot; Last updated 10 September 2026 &middot;
+<a href="/">Documentation</a> &middot;
+<a href="https://privacy.ursacorp.org/#atlassian">Privacy policy</a></footer>
+</body>
+</html>
