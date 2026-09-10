@@ -64,15 +64,19 @@ the Forge CLI token, or the GitHub account holding the source.</li>
 <table>
 <thead><tr><th>Severity</th><th>Meaning</th><th>Acknowledge</th><th>Fix or mitigate</th></tr></thead>
 <tbody>
-<tr><td>Critical</td><td>Cross-tenant data exposure, or a compromised publishing credential</td><td>Same day</td><td>3 calendar days</td></tr>
-<tr><td>High</td><td>Data visible beyond the viewer's own Jira permissions, or stored XSS</td><td>2 business days</td><td>14 calendar days</td></tr>
-<tr><td>Medium</td><td>Requires unusual preconditions, limited impact</td><td>5 business days</td><td>30 calendar days</td></tr>
-<tr><td>Low</td><td>Hardening and defence in depth</td><td>5 business days</td><td>Next release</td></tr>
+<tr><td>Critical</td><td>Cross-tenant data exposure, or a compromised publishing credential</td><td>2 business days</td><td>10 calendar days</td></tr>
+<tr><td>High</td><td>Data visible beyond the viewer's own Jira permissions, or stored XSS</td><td>5 business days</td><td>4 weeks</td></tr>
+<tr><td>Medium</td><td>Requires unusual preconditions, limited impact</td><td>5 business days</td><td>12 weeks</td></tr>
+<tr><td>Low</td><td>Hardening and defence in depth</td><td>5 business days</td><td>25 weeks</td></tr>
 </tbody>
 </table>
 </div>
-<p>These match Atlassian's Marketplace security bug fix policy. Where the two ever diverge,
-Atlassian's policy governs.</p>
+<p>The fix timeframes are the ones Atlassian's
+<a href="https://developer.atlassian.com/platform/marketplace/security-bugfix-policy/">Security
+Bug Fix Policy for Marketplace apps</a> requires of every cloud app. We commit to that required
+floor rather than advertising faster targets a company of this size could not reliably staff;
+in practice a reachable critical or high finding in apps this small is usually fixed much
+sooner. Where this page and Atlassian's policy ever diverge, Atlassian's policy governs.</p>
 
 <h3>What we do</h3>
 <ol>
