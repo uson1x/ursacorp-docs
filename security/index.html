@@ -100,9 +100,9 @@ third-party code, so that is where the effort goes.</p>
 
 <ul>
 <li><strong>Dependency scanning (SCA).</strong> We run <code>npm audit</code> against the full
-dependency tree of every app before each release. GitHub security advisories are enabled on the
+dependency tree of every app before each release. GitHub Dependabot alerts are enabled on the
 source repositories, so new advisories against already-released dependencies reach us without
-us having to look.</li>
+us having to look for them.</li>
 <li><strong>Triage.</strong> Each finding is assessed for whether the app actually reaches the
 vulnerable code path at runtime, not just whether the package appears in the tree. Reachable
 high and critical findings are fixed on the timelines above. Findings we judge unreachable are
@@ -111,8 +111,10 @@ recorded with the reasoning and revisited at the next release rather than dismis
 Marketplace security questionnaire responses rather than left unmentioned.</li>
 <li><strong>Patching.</strong> Dependency updates ship as part of ordinary releases. A fix for
 a reachable high or critical finding is released on its own if it would otherwise wait.</li>
-<li><strong>Code review.</strong> Changes are reviewed before release, with attention to the
-places where Jira data crosses into the page: output escaping, query construction, and CSV export.</li>
+<li><strong>Change review.</strong> URSACORP is a one-person company, so there is no second
+reviewer. Every change is instead re-read before release against a fixed checklist covering the
+places where Jira data crosses into the page: output escaping, query construction, and CSV
+export. We describe this accurately rather than call it peer review.</li>
 </ul>
 
 <p>We do not currently run automated SAST or DAST tooling, and we do not employ external
