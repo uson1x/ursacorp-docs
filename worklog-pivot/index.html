@@ -11,7 +11,14 @@
 <p class="crumb"><a href="/">URSACORP Apps</a> / Worklog Pivot</p>
 <h1>Worklog Pivot</h1>
 <p class="lede">A Jira project page that turns logged time into a pivot table: authors down the
-side, epics across the top, totals that reconcile, and CSV export.</p>
+side, epics across the top, weekly detail, and CSV export.</p>
+<p class="note"><strong>See it before installing:</strong>
+<a href="demo/">open the three-step walkthrough and sample CSV reports</a>, or
+<a href="demo/worklog-pivot-walkthrough.mp4">watch the 36-second video</a>.
+The demo uses invented worklogs and real product screens.</p>
+<p>Already tried it? <a href="mailto:ivanparfenchuk@gmail.com?subject=Worklog%20Pivot%20feedback">Tell us about your reporting task</a>:
+what you need, how often, and what blocked you. Please leave out confidential worklogs
+and customer data.</p>
 
 <h2>How it works</h2>
 <p>Answer "who logged how much time on what" without buying a timesheet suite.</p>
@@ -27,7 +34,7 @@ issues with no epic collapse into a single <strong>No epic</strong> column.</p>
       so heavily-logged issues are not silently truncated.</li>
   <li><strong>Entries are filtered, not issues.</strong> A Jira date filter matches issues, not
       worklog entries, so an issue touched inside your range drags in entries from outside it.
-      Every entry is re-filtered against the range in your chosen timezone before it counts.</li>
+      Every entry is re-filtered against the range in the timezone supplied by Jira before it counts; UTC is used if Jira provides none.</li>
   <li><strong>The count is shown.</strong> The footer reports how many issues were read, how many
       entries were counted, and how many were excluded, so you can watch the filtering
       happen.</li>
@@ -54,8 +61,10 @@ rather than a silently short answer.</p>
   <li>Install the app from the Marketplace. This needs Jira administrator rights.</li>
   <li>Open any Jira project.</li>
   <li>In the project sidebar, choose <strong>Worklog Pivot</strong>.</li>
-  <li>Pick a start and end date, and choose the timezone if the default is not the one you
-      want.</li>
+  <li>Choose a date-range preset, or choose <strong>Custom range</strong> and set the start
+      and end dates, then select <strong>Run report</strong>. The initial report loads automatically.</li>
+  <li>The app uses the timezone provided by Jira, falling back to UTC. Check the footer
+      for the timezone used; there is no timezone selector in the app.</li>
 </ol>
 
 <h2>Verifying that it works</h2>
@@ -80,8 +89,9 @@ rather than a silently short answer.</p>
   <li><strong>Check a cell.</strong> Pick one author and one epic. Add up the hours that person
       logged inside the range on issues under that epic, using the issues' own Work log tabs. The
       cell should match.</li>
-  <li><strong>Check the totals.</strong> Confirm each row total is the sum of its cells, each
-      column total the sum of its column, and the grand total the sum of both.</li>
+  <li><strong>Check the totals.</strong> Compare totals using the exact seconds in the raw
+      worklog export. Displayed cells and totals are rounded independently to two decimal
+      places, so adding the displayed cells can differ slightly from the displayed total.</li>
   <li><strong>Check the entry-level filtering.</strong> The footer should report a non-zero number
       of excluded entries, matching the entries you deliberately placed outside the range. This
       is the behaviour that distinguishes it from an issue-level date filter.</li>
@@ -91,8 +101,9 @@ rather than a silently short answer.</p>
       what is on screen. Then export the raw worklog rows and confirm they are the individual
       entries behind the pivot. The filename carries the project, the range and the
       timezone.</li>
-  <li><strong>Check the timezone.</strong> Change the timezone and confirm that entries logged
-      near midnight move between days as expected.</li>
+  <li><strong>Check the timezone.</strong> Read the timezone in the report footer. For worklogs
+      near midnight, compare the included date using that same timezone rather than your
+      device timezone.</li>
   <li><strong>Check the permission boundary.</strong> Open the page as a user who cannot see some
       of the project's issues. Only worklogs on issues that user can already open in Jira should
       be counted.</li>

@@ -1,0 +1,75 @@
+﻿Issue key,Summary,Author,Started,Seconds,Comment,Epic key,Epic summary,Logged date,Hours
+LAB-10,Tokenise the spacing scale,Adam Stone,2026-08-03T12:30:00.000+0300,3600,"Rounding fix, plus tests for the boundary",LAB-9,Design system,2026-08-03,1.00
+LAB-10,Tokenise the spacing scale,Mia Cheng,2026-08-05T16:30:00.000+0300,5400,"Client call, then wrote up the decisions",LAB-9,Design system,2026-08-05,1.50
+LAB-10,Tokenise the spacing scale,Ivan Parfenchuk,2026-08-06T16:00:00.000+0300,2700,,LAB-9,Design system,2026-08-06,0.75
+LAB-10,Tokenise the spacing scale,Raj Patel,2026-08-07T10:30:00.000+0300,14400,"Reviewed, then deployed to staging",LAB-9,Design system,2026-08-07,4.00
+LAB-10,Tokenise the spacing scale,Raj Patel,2026-08-10T09:00:00.000+0300,7200,Paired with Mia on the migration path,LAB-9,Design system,2026-08-10,2.00
+LAB-10,Tokenise the spacing scale,Ivan Parfenchuk,2026-08-11T13:00:00.000+0300,1800,"Client call, then wrote up the decisions",LAB-9,Design system,2026-08-11,0.50
+LAB-101,Rebuild the account settings page,Zoe Bell,2026-08-03T09:00:00.000+0300,14400,Paired with Mia on the migration path,LAB-100,Client portal rebuild,2026-08-03,4.00
+LAB-101,Rebuild the account settings page,Mia Cheng,2026-08-04T10:00:00.000+0300,9000,Paired with Mia on the migration path,LAB-100,Client portal rebuild,2026-08-04,2.50
+LAB-101,Rebuild the account settings page,Mia Cheng,2026-08-06T10:00:00.000+0300,1800,"Client call, then wrote up the decisions",LAB-100,Client portal rebuild,2026-08-06,0.50
+LAB-101,Rebuild the account settings page,Ivan Parfenchuk,2026-08-07T15:30:00.000+0300,1800,"Reviewed, then deployed to staging",LAB-100,Client portal rebuild,2026-08-07,0.50
+LAB-101,Rebuild the account settings page,Adam Stone,2026-08-07T15:30:00.000+0300,7200,Paired with Mia on the migration path,LAB-100,Client portal rebuild,2026-08-07,2.00
+LAB-101,Rebuild the account settings page,Mia Cheng,2026-08-11T12:00:00.000+0300,10800,Debugging the export encoding,LAB-100,Client portal rebuild,2026-08-11,3.00
+LAB-102,Migrate portal auth to SSO,Mia Cheng,2026-08-03T16:30:00.000+0300,2700,"Reviewed, then deployed to staging",LAB-100,Client portal rebuild,2026-08-03,0.75
+LAB-102,Migrate portal auth to SSO,Mia Cheng,2026-08-04T14:30:00.000+0300,2700,"Rounding fix, plus tests for the boundary",LAB-100,Client portal rebuild,2026-08-04,0.75
+LAB-102,Migrate portal auth to SSO,Mia Cheng,2026-08-06T12:30:00.000+0300,7200,"Rounding fix, plus tests for the boundary",LAB-100,Client portal rebuild,2026-08-06,2.00
+LAB-102,Migrate portal auth to SSO,Mia Cheng,2026-08-07T16:30:00.000+0300,14400,Design review feedback applied,LAB-100,Client portal rebuild,2026-08-07,4.00
+LAB-102,Migrate portal auth to SSO,Ivan Parfenchuk,2026-08-10T13:00:00.000+0300,3600,"Client call, then wrote up the decisions",LAB-100,Client portal rebuild,2026-08-10,1.00
+LAB-102,Migrate portal auth to SSO,Raj Patel,2026-08-11T14:00:00.000+0300,3600,"Client call, then wrote up the decisions",LAB-100,Client portal rebuild,2026-08-11,1.00
+LAB-103,Write the SSO migration tests,Zoe Bell,2026-08-03T11:00:00.000+0300,5400,"Chased the flaky test, root cause was the clock",LAB-100,Client portal rebuild,2026-08-03,1.50
+LAB-103,Write the SSO migration tests,Adam Stone,2026-08-04T11:00:00.000+0300,3600,Paired with Mia on the migration path,LAB-100,Client portal rebuild,2026-08-04,1.00
+LAB-103,Write the SSO migration tests,Mia Cheng,2026-08-05T12:30:00.000+0300,1800,,LAB-100,Client portal rebuild,2026-08-05,0.50
+LAB-103,Write the SSO migration tests,Ivan Parfenchuk,2026-08-07T10:30:00.000+0300,7200,Paired with Mia on the migration path,LAB-100,Client portal rebuild,2026-08-07,2.00
+LAB-103,Write the SSO migration tests,Zoe Bell,2026-08-10T09:30:00.000+0300,2700,Paired with Mia on the migration path,LAB-100,Client portal rebuild,2026-08-10,0.75
+LAB-103,Write the SSO migration tests,Raj Patel,2026-08-11T16:00:00.000+0300,2700,,LAB-100,Client portal rebuild,2026-08-11,0.75
+LAB-11,Dark theme contrast audit,Mia Cheng,2026-08-03T10:00:00.000+0300,5400,Paired with Mia on the migration path,LAB-9,Design system,2026-08-03,1.50
+LAB-11,Dark theme contrast audit,Ivan Parfenchuk,2026-08-05T15:00:00.000+0300,9000,Debugging the export encoding,LAB-9,Design system,2026-08-05,2.50
+LAB-11,Dark theme contrast audit,Raj Patel,2026-08-05T16:30:00.000+0300,9000,Debugging the export encoding,LAB-9,Design system,2026-08-05,2.50
+LAB-11,Dark theme contrast audit,Zoe Bell,2026-08-06T09:30:00.000+0300,3600,Paired with Mia on the migration path,LAB-9,Design system,2026-08-06,1.00
+LAB-11,Dark theme contrast audit,Mia Cheng,2026-08-10T09:30:00.000+0300,3600,Paired with Mia on the migration path,LAB-9,Design system,2026-08-10,1.00
+LAB-11,Dark theme contrast audit,Zoe Bell,2026-08-10T13:00:00.000+0300,2700,"Chased the flaky test, root cause was the clock",LAB-9,Design system,2026-08-10,0.75
+LAB-141,CSV export for invoices,Ivan Parfenchuk,2026-08-01T11:00:00.000+0300,7200,Weekend push to get the export out,LAB-140,Reporting and exports,2026-08-01,2.00
+LAB-141,CSV export for invoices,Raj Patel,2026-08-03T09:00:00.000+0300,10800,"Rounding fix, plus tests for the boundary",LAB-140,Reporting and exports,2026-08-03,3.00
+LAB-141,CSV export for invoices,Adam Stone,2026-08-04T10:00:00.000+0300,10800,"Rounding fix, plus tests for the boundary",LAB-140,Reporting and exports,2026-08-04,3.00
+LAB-141,CSV export for invoices,Raj Patel,2026-08-06T10:00:00.000+0300,1800,Paired with Mia on the migration path,LAB-140,Reporting and exports,2026-08-06,0.50
+LAB-141,CSV export for invoices,Adam Stone,2026-08-06T16:30:00.000+0300,10800,Paired with Mia on the migration path,LAB-140,Reporting and exports,2026-08-06,3.00
+LAB-141,CSV export for invoices,Raj Patel,2026-08-10T11:00:00.000+0300,14400,Debugging the export encoding,LAB-140,Reporting and exports,2026-08-10,4.00
+LAB-141,CSV export for invoices,Zoe Bell,2026-08-11T09:00:00.000+0300,9000,"Chased the flaky test, root cause was the clock",LAB-140,Reporting and exports,2026-08-11,2.50
+LAB-142,Scheduled monthly report email,Ivan Parfenchuk,2026-08-03T12:30:00.000+0300,7200,Paired with Mia on the migration path,LAB-140,Reporting and exports,2026-08-03,2.00
+LAB-142,Scheduled monthly report email,Ivan Parfenchuk,2026-08-05T09:00:00.000+0300,5400,"Reviewed, then deployed to staging",LAB-140,Reporting and exports,2026-08-05,1.50
+LAB-142,Scheduled monthly report email,Zoe Bell,2026-08-05T16:30:00.000+0300,10800,Paired with Mia on the migration path,LAB-140,Reporting and exports,2026-08-05,3.00
+LAB-142,Scheduled monthly report email,Raj Patel,2026-08-07T14:00:00.000+0300,10800,"Chased the flaky test, root cause was the clock",LAB-140,Reporting and exports,2026-08-07,3.00
+LAB-142,Scheduled monthly report email,Ivan Parfenchuk,2026-08-10T13:30:00.000+0300,3600,Design review feedback applied,LAB-140,Reporting and exports,2026-08-10,1.00
+LAB-142,Scheduled monthly report email,Adam Stone,2026-08-11T09:00:00.000+0300,9000,"Reviewed, then deployed to staging",LAB-140,Reporting and exports,2026-08-11,2.50
+LAB-143,Handle UTF-8 names in the export,Ivan Parfenchuk,2026-08-04T15:00:00.000+0300,9000,"Rounding fix, plus tests for the boundary",LAB-140,Reporting and exports,2026-08-04,2.50
+LAB-143,Handle UTF-8 names in the export,Adam Stone,2026-08-05T12:30:00.000+0300,10800,"Client call, then wrote up the decisions",LAB-140,Reporting and exports,2026-08-05,3.00
+LAB-143,Handle UTF-8 names in the export,Ivan Parfenchuk,2026-08-05T15:30:00.000+0300,1800,Paired with Mia on the migration path,LAB-140,Reporting and exports,2026-08-05,0.50
+LAB-143,Handle UTF-8 names in the export,Adam Stone,2026-08-06T16:00:00.000+0300,3600,"Reviewed, then deployed to staging",LAB-140,Reporting and exports,2026-08-06,1.00
+LAB-143,Handle UTF-8 names in the export,Ivan Parfenchuk,2026-08-10T12:30:00.000+0300,7200,"Client call, then wrote up the decisions",LAB-140,Reporting and exports,2026-08-10,2.00
+LAB-143,Handle UTF-8 names in the export,Zoe Bell,2026-08-11T14:30:00.000+0300,9000,Paired with Mia on the migration path,LAB-140,Reporting and exports,2026-08-11,2.50
+LAB-211,Offline mode for timesheets,Ivan Parfenchuk,2026-08-03T16:30:00.000+0300,1800,Design review feedback applied,LAB-210,Mobile app,2026-08-03,0.50
+LAB-211,Offline mode for timesheets,Zoe Bell,2026-08-04T14:30:00.000+0300,14400,Debugging the export encoding,LAB-210,Mobile app,2026-08-04,4.00
+LAB-211,Offline mode for timesheets,Ivan Parfenchuk,2026-08-06T14:00:00.000+0300,10800,"Rounding fix, plus tests for the boundary",LAB-210,Mobile app,2026-08-06,3.00
+LAB-211,Offline mode for timesheets,Mia Cheng,2026-08-07T09:30:00.000+0300,14400,"Chased the flaky test, root cause was the clock",LAB-210,Mobile app,2026-08-07,4.00
+LAB-211,Offline mode for timesheets,Zoe Bell,2026-08-10T09:30:00.000+0300,14400,"Client call, then wrote up the decisions",LAB-210,Mobile app,2026-08-10,4.00
+LAB-211,Offline mode for timesheets,Adam Stone,2026-08-10T16:00:00.000+0300,3600,"Rounding fix, plus tests for the boundary",LAB-210,Mobile app,2026-08-10,1.00
+LAB-212,Push notification opt-in,Raj Patel,2026-08-04T11:30:00.000+0300,9000,,LAB-210,Mobile app,2026-08-04,2.50
+LAB-212,Push notification opt-in,Ivan Parfenchuk,2026-08-04T12:30:00.000+0300,7200,Design review feedback applied,LAB-210,Mobile app,2026-08-04,2.00
+LAB-212,Push notification opt-in,Adam Stone,2026-08-06T09:30:00.000+0300,9000,,LAB-210,Mobile app,2026-08-06,2.50
+LAB-212,Push notification opt-in,Raj Patel,2026-08-06T11:00:00.000+0300,14400,"Client call, then wrote up the decisions",LAB-210,Mobile app,2026-08-06,4.00
+LAB-212,Push notification opt-in,Raj Patel,2026-08-10T12:30:00.000+0300,5400,Paired with Mia on the migration path,LAB-210,Mobile app,2026-08-10,1.50
+LAB-212,Push notification opt-in,Adam Stone,2026-08-11T09:30:00.000+0300,5400,"Chased the flaky test, root cause was the clock",LAB-210,Mobile app,2026-08-11,1.50
+LAB-212,Push notification opt-in,Mia Cheng,2026-08-11T13:00:00.000+0300,9000,"Chased the flaky test, root cause was the clock",LAB-210,Mobile app,2026-08-11,2.50
+LAB-300,Renew the TLS certificates,Raj Patel,2026-08-03T13:00:00.000+0300,2700,Design review feedback applied,,No epic,2026-08-03,0.75
+LAB-300,Renew the TLS certificates,Mia Cheng,2026-08-04T16:30:00.000+0300,9000,"Rounding fix, plus tests for the boundary",,No epic,2026-08-04,2.50
+LAB-300,Renew the TLS certificates,Adam Stone,2026-08-05T15:30:00.000+0300,5400,Paired with Mia on the migration path,,No epic,2026-08-05,1.50
+LAB-300,Renew the TLS certificates,Raj Patel,2026-08-06T11:00:00.000+0300,7200,"Reviewed, then deployed to staging",,No epic,2026-08-06,2.00
+LAB-300,Renew the TLS certificates,Mia Cheng,2026-08-10T13:30:00.000+0300,5400,"Rounding fix, plus tests for the boundary",,No epic,2026-08-10,1.50
+LAB-300,Renew the TLS certificates,Mia Cheng,2026-08-11T15:30:00.000+0300,10800,"Client call, then wrote up the decisions",,No epic,2026-08-11,3.00
+LAB-301,Onboard the new contractor laptops,Zoe Bell,2026-08-03T13:30:00.000+0300,14400,"Reviewed, then deployed to staging",,No epic,2026-08-03,4.00
+LAB-301,Onboard the new contractor laptops,Raj Patel,2026-08-04T15:30:00.000+0300,10800,Paired with Mia on the migration path,,No epic,2026-08-04,3.00
+LAB-301,Onboard the new contractor laptops,Raj Patel,2026-08-05T11:30:00.000+0300,3600,Design review feedback applied,,No epic,2026-08-05,1.00
+LAB-301,Onboard the new contractor laptops,Zoe Bell,2026-08-06T15:00:00.000+0300,1800,Debugging the export encoding,,No epic,2026-08-06,0.50
+LAB-301,Onboard the new contractor laptops,Zoe Bell,2026-08-07T14:00:00.000+0300,3600,Debugging the export encoding,,No epic,2026-08-07,1.00
+LAB-301,Onboard the new contractor laptops,Adam Stone,2026-08-11T12:30:00.000+0300,7200,"Client call, then wrote up the decisions",,No epic,2026-08-11,2.00
