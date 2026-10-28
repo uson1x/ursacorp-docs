@@ -29,9 +29,9 @@ issues with no epic collapse into a single <strong>No epic</strong> column.</p>
 
 <h3>Why it is correct where simpler tools are not</h3>
 <ul>
-  <li><strong>All worklogs, not the first twenty.</strong> Jira's issue search returns only an
-      issue's first 20 worklog entries. The app fetches each issue's full worklog list instead,
-      so heavily-logged issues are not silently truncated.</li>
+  <li><strong>Paginated worklogs.</strong> Jira's issue search returns only an
+      issue's first 20 worklog entries. The app reads the paginated worklog endpoint,
+      subject to the large-report limits below.</li>
   <li><strong>Entries are filtered, not issues.</strong> A Jira date filter matches issues, not
       worklog entries, so an issue touched inside your range drags in entries from outside it.
       Every entry is re-filtered against the range in the timezone supplied by Jira before it counts; UTC is used if Jira provides none.</li>
@@ -41,8 +41,9 @@ issues with no epic collapse into a single <strong>No epic</strong> column.</p>
   <li><strong>Totals reconcile.</strong> Row totals, column totals and the grand total are summed
       from exact seconds rather than from the rounded hours on screen.</li>
 </ul>
-<p class="note">Reports covering more than 2,000 issues are truncated, with a visible warning
-rather than a silently short answer.</p>
+<p class="note">Reports covering more than 2,000 issues are truncated, with a visible warning.
+The app also stops reading an individual issue after 10,000 worklog entries. That per-issue
+limit currently has no separate warning, so totals can be incomplete for such an issue.</p>
 
 <h2>Key features</h2>
 <ul>
