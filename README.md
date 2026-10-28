@@ -37,27 +37,20 @@ CNAME                         docs.ursacorp.org
 Each app listing's Documentation URL should point at its own page here, not at
 the hub.
 
-## Browser migration documentation, prepared 2026-10-28
+## Browser migration, released 2026-10-28
 
-The Worklog Pivot and Epic Lens pages, hub and security policy have a prepared
-update for browser `@forge/bridge.requestJira` transport. The two app pages and
-security page record verified development deployment and pending production release. Do not remove that marker
-until the deployed versions and relevant older major versions have been checked.
-Development versions were verified on 2026-10-28. Production release and the
-public documentation readback must be recorded separately.
+Worklog Pivot production2.3.0 and Epic Lens production2.2.0 use browser
+`@forge/bridge.requestJira`, with unchanged read-only scopes. Development-site
+verification covered known report/CSV totals, sprint/search views and fallback.
+Release evidence is in the research repository's
+`products/forge/browser-migration-2026-10-28/README.md`.
 
 The shared privacy policy is a separate Carrd page at
-`https://privacy.ursacorp.org/#atlassian`. Its paste-ready Atlassian section lives
-in `../ursacorp-apps/privacy.carrd.txt`; publishing this repository does not
-publish that policy. Preserve the site's other product sections. Replace the
-policy's effective date on publication. The canonical Carrd page was published
-and read back on 2026-10-28.
+`https://privacy.ursacorp.org/#atlassian`. Its Atlassian section was published and
+read back on2026-10-28; source lives in `../ursacorp-apps/privacy.carrd.txt`.
+Publishing this repository does not publish Carrd. Other product policies,
+CNAME and the separate ursacorp-apps gadget asset URLs were preserved.
 
-For release: verify the two apps on the owned Jira site; record Forge versions
-and remaining resolver-bearing versions; finalize the status notes; publish the
-canonical policy and this GitHub Pages site; then read back all affected URLs.
-Keep the CNAME and the separate `ursacorp-apps` gadget asset URLs unchanged.
-Update the Marketplace Privacy & Security responses and app-specific review
-answers to match the verified deployment. Their prepared text is maintained in
-the research repository's `products/forge/SECURITY-QUESTIONNAIRE-ANSWERS.md` and
-`products/forge/MARKETPLACE-REVIEW-ANSWERS.md`.
+Marketplace Privacy & Security answers were saved as drafts; their final
+submission status is recorded in the research repository. Do not equate draft
+saving with publication. Historical review answers remain dated history.

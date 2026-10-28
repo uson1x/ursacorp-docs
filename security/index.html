@@ -140,13 +140,13 @@ configuration, not Forge Storage. Jira's own records remain subject to the site'
 <li>No external analytics, tracking pixels or telemetry are added by the apps. Atlassian
 provides installation and operational usage metadata to the vendor. We use that metadata for
 service operation and support, separately from information people choose to send to us.</li>
-<li>The prepared Worklog Pivot and Epic Lens migration uses browser
+<li>The Worklog Pivot and Epic Lens versions released on 2026-10-28 use browser
 <code>requestJira</code> calls and removes app-owned Forge resolver functions. Earlier deployed
 versions may still run those functions on Atlassian's infrastructure until upgraded.</li>
 </ul>
-<p class="note" data-release-status="development-verified">Architecture reviewed 2026-10-28.
-The browser-based Worklog Pivot and Epic Lens versions have been verified in development.
-Their production release is pending; current production versions still use Forge resolvers.</p>
+<p class="note" data-release-status="production-deployed">Architecture reviewed 2026-10-28.
+Worklog Pivot 2.3.0 and Epic Lens 2.2.0 were released to production after development-site
+verification. They use browser Jira requests and have no app-owned Forge resolver functions.</p>
 
 <h3>Least privilege</h3>
 <ul>
