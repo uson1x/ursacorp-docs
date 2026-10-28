@@ -14,10 +14,11 @@ works, what it does, how to set it up, and step-by-step instructions for verifyi
 works on your own site.</p>
 
 <p>All four are built on <a href="https://developer.atlassian.com/platform/forge/">Atlassian
-Forge</a> and run entirely on Atlassian's infrastructure, inside your own Jira site. They read
-Jira data through Atlassian's APIs using the permissions of the person viewing the page, render
-it in the browser, and discard it. None of them makes a network call to any host outside
-Atlassian, and none of them stores your data anywhere.</p>
+Forge</a>. Atlassian hosts their interfaces, which run in your browser and read Jira data through
+Atlassian's APIs using the permissions of the person viewing the page. The apps do not send Jira
+report content to a URSACORP server or use an app database. Small display preferences can remain
+in your browser, gadget settings are saved in Jira's dashboard configuration, and CSV files
+you export remain on your device.</p>
 
 <h2>The apps</h2>
 
@@ -53,8 +54,10 @@ app's page below and on its Marketplace listing. Every request runs as the signe
 an app can only ever show you what you could already open in Jira yourself.</p>
 
 <h3>Privacy</h3>
-<p>These apps do not collect, store, transmit or sell any of your data. See the
-<a href="https://privacy.ursacorp.org/#atlassian">privacy policy</a>.</p>
+<p>The apps have no external analytics or tracking scripts. Atlassian makes installation and
+operational usage metadata available to us; information you choose to send to support is also
+received by us. See the <a href="https://privacy.ursacorp.org/#atlassian">privacy policy</a> for
+the distinction between Jira content, local preferences, exports and operational records.</p>
 
 <h3>Security</h3>
 <p>Our <a href="/security/">security policy</a> covers how we handle security issues and

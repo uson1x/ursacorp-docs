@@ -36,3 +36,28 @@ CNAME                         docs.ursacorp.org
 
 Each app listing's Documentation URL should point at its own page here, not at
 the hub.
+
+## Browser migration documentation, prepared 2026-10-28
+
+The Worklog Pivot and Epic Lens pages, hub and security policy have a prepared
+update for browser `@forge/bridge.requestJira` transport. The two app pages and
+security page record verified development deployment and pending production release. Do not remove that marker
+until the deployed versions and relevant older major versions have been checked.
+Development versions were verified on 2026-10-28. Production release and the
+public documentation readback must be recorded separately.
+
+The shared privacy policy is a separate Carrd page at
+`https://privacy.ursacorp.org/#atlassian`. Its paste-ready Atlassian section lives
+in `../ursacorp-apps/privacy.carrd.txt`; publishing this repository does not
+publish that policy. Preserve the site's other product sections. Replace the
+policy's effective date on publication. The canonical Carrd page was published
+and read back on 2026-10-28.
+
+For release: verify the two apps on the owned Jira site; record Forge versions
+and remaining resolver-bearing versions; finalize the status notes; publish the
+canonical policy and this GitHub Pages site; then read back all affected URLs.
+Keep the CNAME and the separate `ursacorp-apps` gadget asset URLs unchanged.
+Update the Marketplace Privacy & Security responses and app-specific review
+answers to match the verified deployment. Their prepared text is maintained in
+the research repository's `products/forge/SECURITY-QUESTIONNAIRE-ANSWERS.md` and
+`products/forge/MARKETPLACE-REVIEW-ANSWERS.md`.

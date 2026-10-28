@@ -105,8 +105,10 @@ context.</p>
 </ol>
 
 <h2>Permissions</h2>
-<p>Nine permissions, all read-only. The app requests no write permission. Every request is made
-with <code>asUser()</code>, so a viewer only ever sees issues they could already open in Jira.</p>
+<p>Nine permissions, all read-only. The app requests no write permission. Every Jira request
+runs as the signed-in viewer and is subject to that viewer's Jira permissions. The browser-based
+version uses <code>requestJira</code> from Atlassian's Forge bridge; earlier versions use Forge
+<code>asUser()</code> resolver functions. The scope list is unchanged.</p>
 <div class="wrap">
 <table>
   <tr><th>Permission</th><th>Why it is needed</th></tr>
@@ -130,11 +132,18 @@ because the Jira Software agile endpoints reject <code>read:jira-work</code>, an
 permit mixing classic and granular permissions in one app.</p>
 
 <h2>Data handling</h2>
-<p>No data leaves your Atlassian site. The manifest declares no external permissions and the
-source contains no outbound network call, so the app is eligible for Atlassian's
-<a href="https://go.atlassian.com/runs-on-atlassian">Runs on Atlassian</a> programme. The only
-thing kept is which groups you folded, stored in your own browser. Full detail is in the
-<a href="https://privacy.ursacorp.org/#atlassian">privacy policy</a>.</p>
+<p>The app's interface is hosted by Atlassian and runs in your browser. Jira returns boards,
+sprints and issues through Atlassian's APIs. Grouping, filtering and display take place in your
+browser. The app does not send issue content to a URSACORP server, use Forge Storage, or add
+external analytics.</p>
+<p>Collapsed-group preferences stay in your browser's local storage and can be removed by
+clearing that storage. Atlassian makes installation and operational usage metadata available
+to us for support and service operation; that metadata does not measure completed views.
+See the <a href="https://privacy.ursacorp.org/#atlassian">privacy policy</a>.</p>
+<p class="note" data-release-status="development-verified">The browser-based version was
+verified on our development Jira site on 2026-10-28. Its production release is pending.
+Currently installed production versions still use Atlassian-hosted Forge resolver functions.
+Both versions use the same read-only permissions and report features.</p>
 
 <h2>Support</h2>
 <p><a href="mailto:support@ursacorp.org">support@ursacorp.org</a></p>
